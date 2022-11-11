@@ -1,5 +1,4 @@
 <div class="home-container">
-  <div header>header</div>
   <div body>
     <div class="grid">
         <div class="col-wd-12">
@@ -24,6 +23,12 @@
           </div>
         </div>
 
+        <div *ngIf="weather">
+          <div class="col-wd-12">
+            <component-card-weather [weather]="weather"></component-card-weather>
+          </div>
+        </div>
+
         <button class="btn btn-primary" type="button" (click)="createFavorites()">salvar nos favoritos</button>
         
         <div *ngIf="artists && tracks">
@@ -40,5 +45,4 @@
         
       </div>
   </div>
-  <div footer>footer</div>
 </div>

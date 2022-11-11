@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './home.component.page.html',
+  styleUrls: ['./home.component.page.scss']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponentPage implements OnInit {
 
   public artists: any;
   public tracks: any;

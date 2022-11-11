@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from 'src/pages/home/home.component';
+import { HomeComponentPage } from 'src/pages/home/home.component.page';
 import { FavoratiesComponentPage } from 'src/pages/favoraties/favoraties.component.page';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponentPage },
   { path: 'myfavorite', component: FavoratiesComponentPage }
 
 ];
