@@ -1,0 +1,13 @@
+<div class="home-container">
+  <div header>Favoritos</div>
+  <div body>
+    <div class="grid">
+        <div *ngIf="artists && tracks">
+          <div class="col-wd-12">
+            <component-card-music [artists]="artists" [tracks]="tracks"></component-card-music>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div footer>footer</div>
+</div>

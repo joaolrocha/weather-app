@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from 'src/pages/home/home.component';
+import { FavoratiesComponentPage } from 'src/pages/favoraties/favoraties.component.page';
 import { SharedModule } from 'src/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     HomeComponent,
+    FavoratiesComponentPage
 
   ],
   imports: [

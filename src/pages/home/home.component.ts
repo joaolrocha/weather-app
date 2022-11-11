@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ShazamApiService } from 'src/service/shazam-api.service';
 import { WeatherApiService } from 'src/service/weather-api.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private weatherApiService: WeatherApiService,
     private shazamApiService: ShazamApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
 
   }
@@ -177,6 +179,12 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('favorites');
     this.favoritesList = list;
     localStorage.setItem('favorites', JSON.stringify(this.favoritesList));
+  }
+
+  public viewFavorites(item: any) {
+    localStorage.removeItem('itemFavorite');
+    localStorage.setItem('itemFavorite', JSON.stringify(item));
+    this.router.navigate(['/myfavorite']);
   }
 
 }
