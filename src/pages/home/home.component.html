@@ -36,17 +36,42 @@
               </div>
           </div>
         </div>
-          <div class="col-wd-12">
-            <div class="col">
-                <div class="row">
-                  <div *ngFor="let item of tracks; index as i; first as isFirst" class="col-wd-6 col-md-4 col-sm-2">
-                    <div class="col"><img class="media-image" src={{item?.track?.images?.coverart}} alt={{item?.track?.title}}></div>
-                    <div class="col"><a href="{{item?.track?.url}}">{{item?.track?.subtitle}}</a></div>
-                    <div class="col">{{item?.track?.title}}</div>
-                  </div>
+        <div class="col-wd-12">
+          <div class="col">
+              <div class="row">
+                <div *ngFor="let item of tracks; index as i; first as isFirst" class="col-wd-6 col-md-4 col-sm-2">
+                  <div class="col"><img class="media-image" src={{item?.track?.images?.coverart}} alt={{item?.track?.title}}></div>
+                  <div class="col"><a href="{{item?.track?.url}}">{{item?.track?.subtitle}}</a></div>
+                  <div class="col">{{item?.track?.title}}</div>
                 </div>
-            </div>
+              </div>
           </div>
+        </div>
+        <div class="col-wd-12">
+          <div class="col">
+              <div class="row">
+                <div class="col-wd-12">
+                  <table>
+                    <tr>
+                      <!-- <th>id</th> -->
+                      <th>Data</th>
+                      <th>Estilo de Música</th>
+                      <th>Região</th>
+                      <th>Temperatura</th>
+                    </tr>
+                    <tr *ngFor="let item of favoritesList; index as it">
+                      <!-- <td>{{item.id}}</td> -->
+                     <td>{{item?.date}}</td>
+                     <td>{{item?.music}}</td>
+                     <td>{{item?.region}}</td>
+                     <td>{{item?.temp}}</td>
+                     <td><button class="btn btn-primary" type="button" (click)="removeFavorites(favoritesList, item.id)">remover</button></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
       <button class="btn btn-primary" type="button" (click)="createFavorites()">salvar</button>
   </div>

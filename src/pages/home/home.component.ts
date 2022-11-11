@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ShazamApiService } from 'src/service/shazam-api.service';
 import { WeatherApiService } from 'src/service/weather-api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,12 @@ export class HomeComponent implements OnInit {
   public artists: any;
   public tracks: any;
   public weather: any;
+  public favoritesList: any[] = [];
   public formGroup: any; // FormGroup
+
+
+
+  private music = '';
 
   constructor(
     private weatherApiService: WeatherApiService,
@@ -28,6 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this._initForm();
+    this.getFavorites();
   }
 
   private _initForm() {
@@ -89,8 +96,8 @@ export class HomeComponent implements OnInit {
 
 
   private async _shazam(temp: number) {
-    const music = this._tempCompare(temp);
-    const params: any = { term: music, locale: 'en-US', offset: '0', limit: '5' }
+    this.music = this._tempCompare(temp);
+    const params: any = { term: this.music, locale: 'en-US', offset: '0', limit: '5' }
 
     this._getShazam(environment.API_URL_SHAZAM, params).then(
       (response: any) => {
@@ -134,28 +141,42 @@ export class HomeComponent implements OnInit {
     this._weather(param)
   }
 
-  public createFavorites() {
-    let item;
-    let favoritesItem = {};
-    let favoritesList = [];
-
-    item = localStorage.getItem('favorites');
+  public getFavorites() {
+    const item = localStorage.getItem('favorites');
 
     if (item && (item !== null || item !== undefined)) {
-      favoritesList.push(JSON.parse(item));
+      this.favoritesList = JSON.parse(item);
     }
+  }
+
+  public createFavorites() {
+    this.getFavorites();
+
+    let favoritesItem = {};
+    const date = new DatePipe('en-US');
 
     favoritesItem = {
+      id: this.favoritesList?.length ? this.favoritesList?.length : 0,
+      music: this.music,
+      region: this.weather.name,
+      temp: this._convertToCel(this.weather.main.temp),
+      date: date.transform(Date.now(), 'dd/MM/yyyy'),
       artists: this.artists,
       tracks: this.tracks,
       weather: this.weather
     }
-    favoritesList.push(favoritesItem)
+
+    this.favoritesList.push(favoritesItem);
 
     localStorage.removeItem('favorites');
-    localStorage.setItem('favorites', JSON.stringify(favoritesList));
+    localStorage.setItem('favorites', JSON.stringify(this.favoritesList));
+  }
 
-    console.log(favoritesList);
+  public removeFavorites(list: any, id: number){
+    list?.splice(id, 1);
+    localStorage.removeItem('favorites');
+    this.favoritesList = list;
+    localStorage.setItem('favorites', JSON.stringify(this.favoritesList));
   }
 
 }
