@@ -1,19 +1,20 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
-import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from 'src/pages/home/home.component';
+import { SharedModule } from 'src/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
-import {HttpClientModule} from '@angular/common/http';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
- 
+
   ],
   imports: [
     BrowserModule,
@@ -22,8 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     SharedModule,
     BrowserAnimationsModule,
     MatCardModule
-  
-    
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
