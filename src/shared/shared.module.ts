@@ -5,12 +5,14 @@ import { CardComponent } from 'src/components/card/card.component';
 import { HeaderComponent } from 'src/components/header/header.component';
 import { HttpService } from 'src/utils/http.service';
 import { CardMusicComponent } from 'src/components/cardMusic/card-music.component';
+import { CardListFavoratiesComponent } from 'src/components/cardListFavoraties/card-list-favoraties.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     CardComponent,
-    CardMusicComponent
+    CardMusicComponent,
+    CardListFavoratiesComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { CardMusicComponent } from 'src/components/cardMusic/card-music.componen
   exports: [
     HeaderComponent,
     CardComponent,
-    CardMusicComponent
+    CardMusicComponent,
+    CardListFavoratiesComponent
   ],
   providers: [
     HttpService

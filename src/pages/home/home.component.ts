@@ -174,17 +174,4 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('favorites', JSON.stringify(this.favoritesList));
   }
 
-  public removeFavorites(list: any, id: number){
-    list?.splice(id, 1);
-    localStorage.removeItem('favorites');
-    this.favoritesList = list;
-    localStorage.setItem('favorites', JSON.stringify(this.favoritesList));
-  }
-
-  public viewFavorites(item: any) {
-    localStorage.removeItem('itemFavorite');
-    localStorage.setItem('itemFavorite', JSON.stringify(item));
-    this.router.navigate(['/myfavorite']);
-  }
-
 }

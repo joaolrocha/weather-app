@@ -23,6 +23,8 @@
               </div>
           </div>
         </div>
+
+        <button class="btn btn-primary" type="button" (click)="createFavorites()">salvar nos favoritos</button>
         
         <div *ngIf="artists && tracks">
           <div class="col-wd-12">
@@ -30,34 +32,13 @@
           </div>
         </div>
 
-        <div class="col-wd-12">
-          <div class="col">
-              <div class="row">
-                <div class="col-wd-12">
-                  <table>
-                    <tr>
-                      <!-- <th>id</th> -->
-                      <th>Data</th>
-                      <th>Estilo de Música</th>
-                      <th>Região</th>
-                      <th>Temperatura</th>
-                    </tr>
-                    <tr *ngFor="let item of favoritesList; index as it">
-                      <!-- <td>{{item.id}}</td> -->
-                     <td>{{item?.date}}</td>
-                     <td>{{item?.music}}</td>
-                     <td>{{item?.region}}</td>
-                     <td>{{item?.temp}}</td>
-                     <td><button class="btn btn-primary" type="button" (click)="removeFavorites(favoritesList, item.id)">remover</button></td>
-                     <td><button class="btn btn-primary" type="button" (click)="viewFavorites(item)">Ver mais</button></td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
+        <div *ngIf="favoritesList">
+          <div class="col-wd-12">
+            <component-card-list-favoraties [favoritesList]="favoritesList"></component-card-list-favoraties>
           </div>
         </div>
+        
       </div>
-      <button class="btn btn-primary" type="button" (click)="createFavorites()">salvar</button>
   </div>
   <div footer>footer</div>
 </div>
