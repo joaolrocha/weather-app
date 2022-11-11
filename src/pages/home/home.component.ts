@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   public artists: any;
   public tracks: any;
+  public weather: any;
   public formGroup: any; // FormGroup
 
   constructor(
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
     private shazamApiService: ShazamApiService,
     private formBuilder: FormBuilder
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -58,7 +59,8 @@ export class HomeComponent implements OnInit {
 
     this._getWeather(environment.API_URL_WEATHER, params).then(
       (response: any) => {
-        const celsius = this._convertToCel(response.main.temp);
+        this.weather = response;
+        const celsius = this._convertToCel(this.weather.main.temp);
         this._shazam(celsius);
       }
     ).catch(
@@ -124,12 +126,36 @@ export class HomeComponent implements OnInit {
     return retorno;
   }
 
-  onSubmit(formData: any) {
+  public onSubmit(formData: any) {
     const param = {
       lat: formData['lat'],
       long: formData['long']
     }
     this._weather(param)
+  }
+
+  public createFavorites() {
+    let item;
+    let favoritesItem = {};
+    let favoritesList = [];
+
+    item = localStorage.getItem('favorites');
+
+    if (item && (item !== null || item !== undefined)) {
+      favoritesList.push(JSON.parse(item));
+    }
+
+    favoritesItem = {
+      artists: this.artists,
+      tracks: this.tracks,
+      weather: this.weather
+    }
+    favoritesList.push(favoritesItem)
+
+    localStorage.removeItem('favorites');
+    localStorage.setItem('favorites', JSON.stringify(favoritesList));
+
+    console.log(favoritesList);
   }
 
 }
