@@ -5,10 +5,6 @@ import { CardComponent } from 'src/components/card/card.component';
 import { HeaderComponent } from 'src/components/header/header.component';
 import { HttpService } from 'src/utils/http.service';
 
-
-
-
-
 @NgModule({
   declarations: [
     HeaderComponent,

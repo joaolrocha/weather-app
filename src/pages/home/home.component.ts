@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ShazamApiService } from 'src/service/shazam-api.service';
 import { WeatherApiService } from 'src/service/weather-api.service';
@@ -14,27 +15,51 @@ export class HomeComponent implements OnInit {
 
   public artists: any;
   public tracks: any;
+  public formGroup: any; // FormGroup
 
-  constructor(private weatherApiService: WeatherApiService, private shazamApiService: ShazamApiService) { }
-
-  ngOnInit(): void {
-    this._weather();
-    // this.shazamApiService.getShazam("0", "0", 0, 0).subscribe(resp => {console.log(resp)})
+  constructor(
+    private weatherApiService: WeatherApiService,
+    private shazamApiService: ShazamApiService,
+    private formBuilder: FormBuilder
+  ) {
+    
   }
 
-  private async _weather() {
+  ngOnInit(): void {
+    this._initForm();
+  }
+
+  private _initForm() {
+    this.formGroup = this.formBuilder.group({
+      lat: '',
+      long: ''
+    });
+  }
+
+  private _createForm(): FormGroup {
+    return new FormGroup({
+      lat: new FormControl(''),
+      lon: new FormControl('')
+    })
+  }
+
+  private async _weather(data: any) {
+    // const params = {
+    //   lat: data.lat,
+    //   lon: data.long,
+    //   appid: environment.apikeyweather
+    // }
+
     const params = {
-      lat: '0',
-      lon: '0',
+      lat: -22.9035,
+      lon: -43.2096,
       appid: environment.apikeyweather
     }
 
     this._getWeather(environment.API_URL_WEATHER, params).then(
       (response: any) => {
-        console.log('response', response);
-        console.log('response.main.temp', this._fahToCel(response.main.temp));
-        // this._shazam(this._fahToCel(response.main.temp))
-        this._shazam(35)
+        const celsius = this._convertToCel(response.main.temp);
+        this._shazam(celsius);
       }
     ).catch(
       (error) => {
@@ -55,9 +80,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private _fahToCel(fahrenheit: number) {
-    const celsius = Math.round((fahrenheit - 32) * (5 / 9));
-    return celsius;
+  private _convertToCel(temp: number) {
+    const celsius = temp.toString().slice(0, 2);;
+    return parseInt(celsius);
   }
 
 
@@ -67,7 +92,6 @@ export class HomeComponent implements OnInit {
 
     this._getShazam(environment.API_URL_SHAZAM, params).then(
       (response: any) => {
-        console.log('response', response);
         this.artists = response?.artists?.hits;
         this.tracks = response?.tracks?.hits;
       }
@@ -92,12 +116,20 @@ export class HomeComponent implements OnInit {
 
   private _tempCompare(temp: number) {
     let retorno = 'lofi';
-    
-    if(temp > 32) { retorno = 'rock' }
-    if(temp > 24 && temp < 32) { retorno = 'pop' }
-    if(temp > 16 && temp < 24) {retorno = 'classica' }
-    
+
+    if (temp > 32) { retorno = 'rock' }
+    if (temp > 24 && temp < 32) { retorno = 'pop' }
+    if (temp > 16 && temp < 24) { retorno = 'classica' }
+
     return retorno;
+  }
+
+  onSubmit(formData: any) {
+    const param = {
+      lat: formData['lat'],
+      long: formData['long']
+    }
+    this._weather(param)
   }
 
 }

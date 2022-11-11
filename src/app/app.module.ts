@@ -7,6 +7,7 @@ import { HomeComponent } from 'src/pages/home/home.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,8 +23,9 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    MatCardModule
-
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],
