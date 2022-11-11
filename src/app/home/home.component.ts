@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WeatherApiService } from '../shared/service/weather-api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private weatherApi:WeatherApiService) { }
 
   ngOnInit(): void {
+    this.weatherApi.get("0", "0").subscribe(resp => {console.log(resp)})
   }
 
 }
