@@ -12,6 +12,9 @@ import { WeatherApiService } from 'src/service/weather-api.service';
 
 export class HomeComponent implements OnInit {
 
+  public artists: any;
+  public tracks: any;
+
   constructor(private weatherApiService: WeatherApiService, private shazamApiService: ShazamApiService) { }
 
   ngOnInit(): void {
@@ -65,6 +68,8 @@ export class HomeComponent implements OnInit {
     this._getShazam(environment.API_URL_SHAZAM, params).then(
       (response: any) => {
         console.log('response', response);
+        this.artists = response?.artists?.hits;
+        this.tracks = response?.tracks?.hits;
       }
     ).catch(
       (error) => {
