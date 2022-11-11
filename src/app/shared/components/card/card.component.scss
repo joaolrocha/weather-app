@@ -1,0 +1,46 @@
+/*mat-card::ng-deep.mat-card-header-text {
+  width: 100%;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+
+  > div {
+    flex: 50%;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  > .temp {
+    background: lightblue;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  > .outlook {
+    color: black;
+     background: rgba(0,0,0,0.1);
+   } 
+
+}*/
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 0 12px 0 #0003;
+  min-height: 220px;
+  width: 100%;
+  &__header {
+    flex: 1;
+
+  }
+  &__body{
+    flex: 3;
+  }
+  &__footer{
+    flex: 1;
+  }
+}
