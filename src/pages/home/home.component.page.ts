@@ -1,11 +1,11 @@
 
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ShazamApiService } from 'src/service/shazam-api.service';
 import { WeatherApiService } from 'src/service/weather-api.service';
-import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -54,17 +54,18 @@ export class HomeComponentPage implements OnInit {
   }
 
   private async _weather(data: any) {
-    // const params = {
-    //   lat: data.lat,
-    //   lon: data.long,
-    //   appid: environment.apikeyweather
-    // }
-
     const params = {
-      lat: -22.9035,
-      lon: -43.2096,
+      lat: data.lat,
+      lon: data.long,
       appid: environment.apikeyweather
     }
+
+    // RIO DE JANEIRO
+    // const params = {
+    //   lat: -22.9035,
+    //   lon: -43.2096,
+    //   appid: environment.apikeyweather
+    // }
 
     this._getWeather(environment.API_URL_WEATHER, params).then(
       (response: any) => {
