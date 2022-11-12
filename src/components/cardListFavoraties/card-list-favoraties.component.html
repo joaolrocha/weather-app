@@ -2,7 +2,9 @@
   <div class="col">
       <div class="row">
         <div class="col-wd-12">
-          <table>
+
+          <h2 class="title">Meus Favoritos</h2>
+          <table class="table-favoraties">
             <tr>
               <!-- <th>id</th> -->
               <th>Data</th>
@@ -15,7 +17,7 @@
              <td>{{item?.date}}</td>
              <td>{{item?.music}}</td>
              <td>{{item?.region}}</td>
-             <td>{{item?.temp}}</td>
+             <td>{{item?.temp}}°</td>
              <td><button class="btn btn-primary" type="button" (click)="removeFavorites(favoritesList, item.id)">remover</button></td>
              <td><button class="btn btn-primary" type="button" (click)="viewFavorites(item)">Ver mais</button></td>
             </tr>

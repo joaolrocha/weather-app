@@ -1,9 +1,22 @@
 <div class="col-wd-12">
   <div class="col">
       <div class="row">
-        <div class="col-wd-6 col-md-4 col-sm-2">
-          <div class="col">{{weather?.name}}</div>
-          <div class="col">{{convertToCel(weather.main.temp)}}</div>
+        <div class="col-wd-12">
+          <div class="col">Região: {{weather?.name}}, {{ weather?.sys?.country }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-wd-4">
+          <div class="col">Temperatura: {{convertToCel(weather.main.temp)}}</div>
+        </div>
+        <div class="col-wd-4">
+          <div class="col">Temperatura Máxima: {{convertToCel(weather.main.temp_max)}}</div>
+        </div>
+        <div class="col-wd-4">
+          <div class="col">Temperatura Mínima: {{convertToCel(weather.main.temp_min)}}</div>
+        </div>
+        <div class="col-wd-4">
+          <div class="col">Sensação Térmica: {{convertToCel(weather.main.feels_like)}}</div>
         </div>
       </div>
   </div>

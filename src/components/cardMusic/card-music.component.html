@@ -1,22 +1,24 @@
 <div class="col-wd-12">
   <div class="col">
+      <h2 class="title">Artistas</h2>
       <div class="row">
-        <div *ngFor="let item of artists; index as i" class="col-wd-6 col-md-4 col-sm-2">
-          <div class="col"><img class="media-image" src={{item?.artist?.avatar}} alt={{item?.artist?.name}}></div>
-          <div class="col">{{item?.artist?.adamid}}</div>
-          <div class="col">{{item?.artist?.name}}</div>
-          <div class="col">{{item?.artist?.weburl}}</div>
+        <div *ngFor="let item of artists; index as i" class="col-music-1 col-wd-6 col-md-4 col-sm-2">
+          <div class="col col-image"><img class="media-image" [src]="item?.artist?.avatar!= null ? item?.artist?.avatar : 'https://st2.depositphotos.com/6074680/9983/v/450/depositphotos_99831720-stock-illustration-vinyl-disc-with-its-cover.jpg'" src={{item?.artist?.avatar}} alt={{item?.artist?.name}}></div>
+          <div class="col"><span class="text-id">id: {{item?.artist?.adamid}}</span></div>
+          <div class="col"><span class="text-id">{{item?.artist?.name}}</span></div>
+          <div class="col"><span class="text-id"><a href="{{item?.artist?.weburl}}">ver mais</a></span></div>
         </div>
       </div>
   </div>
 </div>
 <div class="col-wd-12">
   <div class="col">
+      <h2 class="title">Faixas</h2>
       <div class="row">
-        <div *ngFor="let item of tracks; index as i; first as isFirst" class="col-wd-6 col-md-4 col-sm-2">
-          <div class="col"><img class="media-image" src={{item?.track?.images?.coverart}} alt={{item?.track?.title}}></div>
-          <div class="col"><a href="{{item?.track?.url}}">{{item?.track?.subtitle}}</a></div>
-          <div class="col">{{item?.track?.title}}</div>
+        <div *ngFor="let item of tracks; index as i; first as isFirst" class="col-music-1 col-wd-6 col-md-4 col-sm-2">
+          <div class="col col-image"><img class="media-image" [src]="item?.track?.images?.coverart!= null ? item?.track?.images?.coverart : 'https://st2.depositphotos.com/6074680/9983/v/450/depositphotos_99831720-stock-illustration-vinyl-disc-with-its-cover.jpg'" alt={{item?.track?.title}}></div>
+          <div class="col"><span class="text-id"><a href="{{item?.track?.url}}">{{item?.track?.subtitle}}</a></span></div>
+          <div class="col"><span class="text-id">{{item?.track?.title}}</span></div>
         </div>
       </div>
   </div>

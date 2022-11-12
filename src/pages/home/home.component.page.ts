@@ -99,7 +99,7 @@ export class HomeComponentPage implements OnInit {
 
   private async _shazam(temp: number) {
     this.music = this._tempCompare(temp);
-    const params: any = { term: this.music, locale: 'en-US', offset: '0', limit: '5' }
+    const params: any = { term: this.music, locale: 'en-US', offset: '0', limit: '6' }
 
     this._getShazam(environment.API_URL_SHAZAM, params).then(
       (response: any) => {
