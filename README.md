@@ -13,7 +13,6 @@ $ npm install
 # Terceiro passo: (Executar a aplicação)
 $ ng serve
 
-# Após executar a aplicação será gerado o arquivo .xlsx
 ```
 
 ### Pacotes utilizados nesse projeto:
